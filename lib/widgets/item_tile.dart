@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:grokart/models/item.dart';
+import 'dart:math';
 
 class ItemTile extends StatelessWidget {
   final Item item;
@@ -52,12 +53,35 @@ class ItemTile extends StatelessWidget {
                         const Icon(Icons.error),
                   ),
                   const SizedBox(width: 20),
-                  Text(
-                    item.name,
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.grey.shade900,
-                    ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(height: 15),
+                      Text(
+                        item.name,
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.grey.shade900,
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            (Random().nextDouble() * 5).toStringAsFixed(1),
+                            style: TextStyle(
+                              fontSize: 10,
+                              color: Colors.grey.shade800,
+                            ),
+                          ),
+                          const Icon(
+                            Icons.star_rounded,
+                            color: Colors.yellow,
+                            size: 15,
+                          )
+                        ],
+                      ),
+                    ],
                   ),
                 ],
               ),
