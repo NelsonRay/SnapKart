@@ -3,9 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
+import 'package:grokart/models/item.dart';
 
 class DirectionTile extends StatelessWidget {
-  final Map<String, dynamic> item;
+  final Item item;
   final int currentAisle;
 
   const DirectionTile({
@@ -16,8 +17,6 @@ class DirectionTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final aisle = item['aisle'];
-
     return Card(
       margin: const EdgeInsets.all(5.0),
       elevation: 0.5,
@@ -35,7 +34,7 @@ class DirectionTile extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  item['aisle'].toString(),
+                  item.aisle.toString(),
                   style: const TextStyle(
                     fontSize: 25,
                     color: Colors.black,
@@ -48,8 +47,8 @@ class DirectionTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      (aisle == currentAisle ? 'Stay in' : 'Go to') +
-                          ' Aisle ${item['aisle']}',
+                      (item.aisle == currentAisle ? 'Stay in' : 'Go to') +
+                          ' Aisle ${item.aisle}',
                       style: TextStyle(
                         color: Colors.grey.shade900,
                         fontSize: 16,
@@ -57,7 +56,7 @@ class DirectionTile extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      item['name'].toString(),
+                      item.name,
                       style: TextStyle(
                         color: Colors.grey.shade700,
                         fontSize: 14,
@@ -69,7 +68,7 @@ class DirectionTile extends StatelessWidget {
               ],
             ),
             CachedNetworkImage(
-              imageUrl: item['image'],
+              imageUrl: item.photoUrl,
               height: 40,
               width: 40,
               fit: BoxFit.contain,

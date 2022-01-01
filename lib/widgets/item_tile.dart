@@ -1,10 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:grokart/models/item.dart';
 
 class ItemTile extends StatelessWidget {
-  final Map<String, dynamic> item;
-  final void Function(Map<String, dynamic> item) handleTap;
-  final bool Function(Map<String, dynamic> item) isItemSelected;
+  final Item item;
+  final void Function(Item item) handleTap;
+  final bool isItemSelected;
 
   const ItemTile({
     Key? key,
@@ -31,14 +32,14 @@ class ItemTile extends StatelessWidget {
         clipBehavior: Clip.hardEdge,
         child: Container(
           padding: const EdgeInsets.fromLTRB(8.0, 8.0, 10.0, 8.0),
-          color: isItemSelected(item) ? Colors.green.shade50 : null,
+          color: isItemSelected ? Colors.green.shade50 : null,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
                 children: [
                   CachedNetworkImage(
-                    imageUrl: item['image'],
+                    imageUrl: item.photoUrl,
                     height: 40,
                     width: 40,
                     fit: BoxFit.contain,
@@ -52,7 +53,7 @@ class ItemTile extends StatelessWidget {
                   ),
                   const SizedBox(width: 20),
                   Text(
-                    item['name'].toString(),
+                    item.name,
                     style: TextStyle(
                       fontSize: 14,
                       color: Colors.grey.shade900,
@@ -63,7 +64,7 @@ class ItemTile extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    'Aisle: ${item['aisle']}',
+                    'Aisle: ${item.aisle}',
                     style: TextStyle(
                       fontSize: 12,
                       color: Colors.grey.shade600,
@@ -76,12 +77,12 @@ class ItemTile extends StatelessWidget {
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: isItemSelected(item) ? Colors.green : null,
+                      color: isItemSelected ? Colors.green : null,
                       border: Border.all(
                         color: Colors.green,
                       ),
                     ),
-                    child: isItemSelected(item)
+                    child: isItemSelected
                         ? const Icon(
                             Icons.check_rounded,
                             size: 17,

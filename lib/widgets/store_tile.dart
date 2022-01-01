@@ -1,10 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:grokart/models/store.dart';
 
 class StoreTile extends StatelessWidget {
-  final void Function(Map<String, dynamic> store) handleTap;
+  final Store store;
+  final void Function(Store store) handleTap;
   final bool isSelected;
-  final Map<String, dynamic> store;
 
   const StoreTile({
     Key? key,
@@ -39,7 +40,7 @@ class StoreTile extends StatelessWidget {
               Row(
                 children: [
                   CachedNetworkImage(
-                    imageUrl: store['image'],
+                    imageUrl: store.photoUrl,
                     height: 40,
                     width: 40,
                     fit: BoxFit.contain,
@@ -57,14 +58,14 @@ class StoreTile extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        store['name'].toString(),
+                        store.name,
                         style: TextStyle(
                           fontSize: 15,
                           color: Colors.grey.shade900,
                         ),
                       ),
                       Text(
-                        store['location'].toString(),
+                        store.location,
                         style: TextStyle(
                           fontSize: 12,
                           color: Colors.grey.shade600,
@@ -79,14 +80,14 @@ class StoreTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    store['opens'],
+                    '8:00 AM',
                     style: TextStyle(
                       fontSize: 12,
                       color: Colors.grey.shade600,
                     ),
                   ),
                   Text(
-                    store['closes'],
+                    '10:00 PM',
                     style: TextStyle(
                       fontSize: 12,
                       color: Colors.grey.shade600,
